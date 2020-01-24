@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "StripeSubscription";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="POST" asp-action="Create" asp-controller="Subscription" class="form-group">
+    <div class="form-row">
+        <input name="days" type="radio" checked="checked" value="One" />
+        <span>One Day</span> <br />
+        <input name="days" type="radio" value="Two" />
+        <span>Two days</span> <br />
+        <input name="days" type="radio" value="Three" />
+        <span>Three Days</span>
+        <p>
+            <input type="submit" class="btn btn-primary" value="Subscribe" />
+        </p>
+    </div>
+</form>
