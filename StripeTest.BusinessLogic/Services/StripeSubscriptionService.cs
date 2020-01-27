@@ -12,7 +12,7 @@ namespace StripeTest.BusinessLogic.Services
         private const string TEST_PLAN =  "plan_GbZvoCPeZLUShk";
         private const string TEST_PLAN2 = "plan_Gbb646qs5FPoVM";
         private const string TEST_PLAN3 = "plan_GbbG98me25ouUo";
-        private const string TEST_CUSTOMER = "cus_GbjMBVZNAqRGgc";
+        private const string TEST_CUSTOMER = "cus_GbbITjvvgBfRzv";
         private readonly StripeOption _stripeOptions;
         public StripeSubscriptionService(IOptions<StripeOption> stripeOptions)
         {

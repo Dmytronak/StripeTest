@@ -20,3 +20,4 @@
 2020-01-27T13:12:37.9004607+02:00 800000e2-0001-f800-b63f-84710c7967bb [INF] Invoice event: "evt_1G5VRgDsf6PFxRKvQ37ftPnE", Type: "invoice.payment_succeeded" Status: "paid" (60682eca)
 2020-01-27T13:12:37.9013595+02:00 80000002-0001-f400-b63f-84710c7967bb [INF] Invoice event: "evt_1G5VRgDsf6PFxRKvWQy5Fe4d", Type: "invoice.finalized" Status: "paid" (60682eca)
 2020-01-27T13:24:45.5620031+02:00 80000182-0003-fb00-b63f-84710c7967bb [INF] Subscription event: "evt_00000000000000", Type: "customer.subscription.updated" Status: "active" (cd3c69e2)
+2020-01-27T13:33:02.6205338+02:00 800000b7-0004-fa00-b63f-84710c7967bb [WRN] Failed to determine the https port for redirect. (ca76cc21)
