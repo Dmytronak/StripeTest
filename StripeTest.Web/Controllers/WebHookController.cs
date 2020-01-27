@@ -10,6 +10,9 @@ namespace StripeTest.Web.Controllers
     public class WebHookController : BaseController
     {
         private readonly ILogger<WebHookController> _logger;
+        private const string TEST_TYPES_SUBSCRIPTION = "customer.subscription";
+        private const string TEST_TYPES_INVOICE = "invoice";
+
         public WebHookController(ILogger<WebHookController> logger)
         {
             _logger = logger;
@@ -24,35 +27,21 @@ namespace StripeTest.Web.Controllers
             {
                 var stripeEvent = EventUtility.ParseEvent(json);
 
-                if (stripeEvent.Type.Contains("payment_intent"))
+                if (stripeEvent.Type.Contains(TEST_TYPES_SUBSCRIPTION))
                 {
-                    var eventResult = stripeEvent.Data.Object as PaymentIntent;
-                    _logger.LogInformation("Succeeded: {ID}", eventResult);
+                    var eventResult = stripeEvent.Data.Object as Subscription;
+                    _logger.LogInformation("Subscription event: {0}, Type: {1} Status: {2}", stripeEvent.Id, stripeEvent.Type, eventResult.Status);
                 }
-                else if (stripeEvent.Type.Contains("expired"))
+                else if (stripeEvent.Type.Contains(TEST_TYPES_INVOICE))
                 {
-                    var eventResult = Json(stripeEvent.Data.Object).Value;
-                    _logger.LogInformation("Event contains EXPIRED: {ID}", eventResult);
-                }
-                else if (stripeEvent.Type.Contains("charge"))
-                {
-                    var eventResult = Json(stripeEvent.Data.Object).Value;
-                    _logger.LogInformation("Event contains CHARGE: {ID}", eventResult);
-                }
-                else if (stripeEvent.Type.Contains("subscription"))
-                {
-                    var eventResult = Json(stripeEvent.Data.Object).Value;
-                    _logger.LogInformation("Event contains SUBSCRIPTION: {ID}", eventResult);
-                }
-                else if (stripeEvent.Type == Events.PaymentMethodAttached)
-                {
-                    var paymentMethod = stripeEvent.Data.Object as PaymentMethod;
-                    _logger.LogInformation("Payment Method Attached: {ID}", paymentMethod.Id);
+                    var eventResult = stripeEvent.Data.Object as Invoice;
+                    _logger.LogInformation("Invoice event: {0}, Type: {1} Status: {2}", stripeEvent.Id, stripeEvent.Type, eventResult.Status);
                 }
                 else
                 {
                     return BadRequest();
                 }
+
                 return Ok();
             }
             catch (StripeException e)
